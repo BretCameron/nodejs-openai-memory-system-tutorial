@@ -120,7 +120,7 @@ async function main() {
 
     rl.write("\n\n");
 
-    while (sum(messageHistory.map((x) => x.tokenCount)) > 100) {
+    while (sum(messageHistory.map((x) => x.tokenCount)) > 1000) {
       messageHistory.shift();
     }
 

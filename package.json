@@ -13,7 +13,10 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "start:strategy-1": "ts-node strategy-1.ts",
+    "start:strategy-2": "ts-node strategy-2.ts",
+    "start:strategy-3": "ts-node strategy-3.ts"
   },
   "keywords": [],
   "author": "",
