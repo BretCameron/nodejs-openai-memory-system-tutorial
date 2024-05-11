@@ -1,8 +1,8 @@
+import { encodingForModel } from "js-tiktoken";
 import dotenv from "dotenv";
+import ObjectID from "bson-objectid";
 import OpenAI from "openai";
 import readline from "readline/promises";
-import { encodingForModel } from "js-tiktoken";
-import ObjectID from "bson-objectid";
 
 dotenv.config();
 
@@ -18,12 +18,12 @@ const client = new OpenAI({
   organization: process.env.OPEN_AI_ORG,
 });
 
-const messageHistory: StoredMessage[] = [];
-
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
+
+const messageHistory: StoredMessage[] = [];
 
 const encoding = encodingForModel("gpt-4");
 
@@ -55,8 +55,6 @@ async function summarizeMessage(
     messageHistory[messageIndex].content = summary;
     messageHistory[messageIndex].tokenCount = summaryTokenCount;
   }
-
-  // console.log(`\n\nSummary: "${summary}"\n\n`);
 }
 
 async function main() {

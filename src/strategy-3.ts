@@ -1,8 +1,8 @@
+import { encodingForModel } from "js-tiktoken";
 import dotenv from "dotenv";
+import ObjectID from "bson-objectid";
 import OpenAI from "openai";
 import readline from "readline/promises";
-import { encodingForModel } from "js-tiktoken";
-import ObjectID from "bson-objectid";
 
 dotenv.config();
 
@@ -13,29 +13,24 @@ type StoredMessage = Message & {
   tokenCount: number;
 };
 
-const topics: Record<string, string[]> = {};
-
 const client = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
   organization: process.env.OPEN_AI_ORG,
 });
-
-const messageHistory: StoredMessage[] = [];
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
+const messageHistory: StoredMessage[] = [];
+const topics: Record<string, string[]> = {};
+
 const encoding = encodingForModel("gpt-4");
 
 const getPromptToDivideIntoCategories = (
   content: string
-) => `Go through the following message and split it into smaller 
-  parts based on the different topics it covers. Your result should be a JSON 
-  object where the keys are the topics and the values are an array of strings
-  representing the corresponding excerpts from the message. You can ignore any
-  irrelevant details.
+) => `Go through the following message and split it into smaller parts based on the different topics it covers. Your result should be a JSON object where the keys are the topics and the values are an array of strings representing the corresponding excerpts from the message. You can ignore any irrelevant details.
 
   You can use the following topics as a reference: ${Object.keys(topics).join(
     ", "
@@ -48,11 +43,7 @@ const getPromptToDivideIntoCategories = (
 const getPromptToChooseRelevantTopics = (
   question: string,
   topicNames: string[]
-) => `Which of the following topics are relevant to the user's question?
-  Give your answer as a JSON array of strings, where each string is a topic.
-  If none of the topics are relevant, you can respond with an empty array.
-  It is better to include more topics than necessary than to exclude relevant
-  topics.
+) => `Which of the following topics are relevant to the user's question? Give your answer as a JSON array of strings, where each string is a topic. If none of the topics are relevant, you can respond with an empty array. It is better to include more topics than necessary than to exclude relevant topics.
 
   Topics:
   "${topicNames.join(", ")}"

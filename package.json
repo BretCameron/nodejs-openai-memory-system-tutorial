@@ -1,4 +1,18 @@
 {
+  "name": "nodejs-openai-memory-system-tutorial",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "author": {
+    "name": "Bret Cameron"
+  },
+  "license": "MIT",
+  "description": "A tutorial project containing examples of how to overcome conversation token limits using OpenAI's API.",
+  "scripts": {
+    "start:basic": "ts-node src/conversation.ts",
+    "start:1": "ts-node src/strategy-1.ts",
+    "start:2": "ts-node src/strategy-2.ts",
+    "start:3": "ts-node src/strategy-3.ts"
+  },
   "dependencies": {
     "bson-objectid": "^2.0.4",
     "dotenv": "^16.4.5",
@@ -8,18 +22,5 @@
   "devDependencies": {
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
-  },
-  "name": "nodejs-openai-memory-system-tutorial",
-  "version": "1.0.0",
-  "main": "index.ts",
-  "scripts": {
-    "start": "ts-node strategy-$npm_config_strategy.ts",
-    "start:strategy-1": "ts-node strategy-1.ts",
-    "start:strategy-2": "ts-node strategy-2.ts",
-    "start:strategy-3": "ts-node strategy-3.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }
