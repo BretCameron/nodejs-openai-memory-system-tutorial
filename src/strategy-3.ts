@@ -193,8 +193,8 @@ async function main() {
 
     let newContent = "";
 
-    for await (const part of response) {
-      const content = part.choices[0]?.delta?.content || "";
+    for await (const chunk of response) {
+      const content = chunk.choices[0]?.delta?.content || "";
 
       newContent += content;
       rl.write(content);

@@ -57,7 +57,9 @@ npm run start:3
 
 ## Debugging
 
-I recommend running the examples in debug mode, so you can see values of `messageHistory` and other useful variables as the conversation progresses.
+I recommend running the examples in debug mode, so you can see the values of the `messageHistory` variable and other useful variables as the conversation progresses.
+
+### VSCode
 
 For VSCode users, you can use the included launch configuration in `.vscode/launch.json`. Go into the debug panel, choose `"Tutorial Project Debugger"` from the dropdown, then press the play button.
 
